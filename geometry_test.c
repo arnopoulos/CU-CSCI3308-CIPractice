@@ -160,6 +160,21 @@ START_TEST(test_2d_area) {
 	
 	double area = coord_2d_area_triangle(&a,&b,&c);
 	ck_assert(area == 0.5);
+	
+	coord_2d_t a1;
+	a1.x = 0.0;
+	a1.y = 0.0;
+	
+	coord_2d_t b1;
+	b1.x = 0.0;
+	b1.y = 8.0;
+	
+	coord_2d_t c1;
+	c1.x = 8.0;
+	c1.y = 0.0;
+	
+	double area1 = coord_2d_area_triangle(&a1,&b1,&c1);
+	ck_assert(area1 == 32.0);
 }
 END_TEST
 
