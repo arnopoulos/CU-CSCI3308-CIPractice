@@ -14,10 +14,58 @@
 #include <errno.h>
 
 #include "geometry.h"
+#include "math.h"
 
 #define FUZZY_EQ 0.01
 
 #define DEBUG(file, line, func, msg) fprintf(stderr, "DEBUG - %s_%d_%s: %s", file, line, func, msg);
+
+double minX(const coord_2d_t*a,const coord_2d_t*b,const coord_2d_t*c) {
+	double min = a->x;
+	if (min > b->x) min = b->x;
+	if (min > c->x) min = c->x;
+	return min;
+}
+
+double maxX(const coord_2d_t*a,const coord_2d_t*b,const coord_2d_t*c) {
+	double max = a->x;
+	if (max < b->x) max = b->x;
+	if (max < c->x) max = c->x;
+	return max;
+}
+
+double minY(const coord_2d_t*a,const coord_2d_t*b,const coord_2d_t*c) {
+	double min = a->y;
+	if (min > b->y) min = b->y;
+	if (min > c->y) min = c->y;
+	return min;
+}
+
+double maxY(const coord_2d_t*a,const coord_2d_t*b,const coord_2d_t*c) {
+	double max = a->y;
+	if (max < b->y) max = b->y;
+	if (max < c->y) max = c->y;
+	return max;
+}
+
+double delta(double d1, double d2){
+	 return fabs(d1-d2);
+}
+
+double coord_2d_area_triangle(const coord_2d_t*a,const coord_2d_t*b,const coord_2d_t*c){
+	double minx = minX(a,b,c);
+	double maxx = maxX(a,b,c);
+	double deltax = delta(maxx, minx);
+	
+	double miny = minY(a,b,c);
+	double maxy = maxY(a,b,c);
+	double deltay = delta(maxy, miny);
+	
+	double area = (deltax*deltay)/2.0;
+	return area;
+}
+
+
 
 double coord_2d_dist(const coord_2d_t* a, const coord_2d_t* b){
 
