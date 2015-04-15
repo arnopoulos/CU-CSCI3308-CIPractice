@@ -3,7 +3,7 @@
 # Summer 2014
 
 CC = gcc
-CFLAGS = -c -g -Wall -Wextra
+CFLAGS = -c -g -Wall -Wextra -lm
 LFLAGS = -g -Wall -Wextra
 
 PKG_MATH_LIBS = -lm
